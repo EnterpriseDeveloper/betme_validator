@@ -1,6 +1,8 @@
-def main():
-    print("Hello from bettery-validator!")
+from fastapi import FastAPI
+
+app = FastAPI()
 
 
-if __name__ == "__main__":
-    main()
+@app.get("/ping")
+def read_root():
+    return {"status": "ok"}
