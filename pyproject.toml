@@ -6,7 +6,6 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "cosmospy>=6.0.0",
-    "cosmpy>=0.11.2",
     "black>=26.1.0",
     "isort>=7.0.0",
     "langchain>=1.2.7",
@@ -17,5 +16,6 @@ dependencies = [
     "fastapi>=0.129.0",
     "grpcio>=1.78.0",
     "grpcio-tools>=1.71.2",
-    "protobuf>=5.29.6",
+    "uvicorn>=0.41.0",
+    "protobuf>=6.33.5",
 ]
