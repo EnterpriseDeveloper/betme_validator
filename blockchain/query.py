@@ -11,5 +11,4 @@ def fetch_events():
     channel = grpc.insecure_channel(url)
     stub = query_pb2_grpc.QueryStub(channel)
     request = query_pb2.QueryAllEventsRequest()
-    response = stub.ListEventsForValidator(request)
-    return response.events
+    return stub.ListEventsForValidator(request)

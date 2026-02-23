@@ -4,6 +4,12 @@
 # source: bettery/events/v1/tx.proto
 # Protobuf Python Version: 6.31.1
 """Generated protocol buffer code."""
+from proto.gogoproto import gogo_pb2 as gogoproto_dot_gogo__pb2
+from proto.cosmos_proto import cosmos_pb2 as cosmos__proto_dot_cosmos__pb2
+from proto.cosmos.msg.v1 import msg_pb2 as cosmos_dot_msg_dot_v1_dot_msg__pb2
+from proto.cosmos.base.v1beta1 import coin_pb2 as cosmos_dot_base_dot_v1beta1_dot_coin__pb2
+from proto.bettery.events.v1 import params_pb2 as bettery_dot_events_dot_v1_dot_params__pb2
+from proto.amino import amino_pb2 as amino_dot_amino__pb2
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
@@ -22,58 +28,52 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
-from amino import amino_pb2 as amino_dot_amino__pb2
-from bettery.events.v1 import params_pb2 as bettery_dot_events_dot_v1_dot_params__pb2
-from cosmos.base.v1beta1 import coin_pb2 as cosmos_dot_base_dot_v1beta1_dot_coin__pb2
-from cosmos.msg.v1 import msg_pb2 as cosmos_dot_msg_dot_v1_dot_msg__pb2
-from cosmos_proto import cosmos_pb2 as cosmos__proto_dot_cosmos__pb2
-from gogoproto import gogo_pb2 as gogoproto_dot_gogo__pb2
-
-
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x62\x65ttery/events/v1/tx.proto\x12\x11\x62\x65ttery.events.v1\x1a\x11\x61mino/amino.proto\x1a\x1e\x62\x65ttery/events/v1/params.proto\x1a\x1e\x63osmos/base/v1beta1/coin.proto\x1a\x17\x63osmos/msg/v1/msg.proto\x1a\x19\x63osmos_proto/cosmos.proto\x1a\x14gogoproto/gogo.proto\"\xa9\x01\n\x0fMsgUpdateParams\x12+\n\tauthority\x18\x01 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12\x34\n\x06params\x18\x02 \x01(\x0b\x32\x19.bettery.events.v1.ParamsB\t\xc8\xde\x1f\x00\xa8\xe7\xb0*\x01:3\x82\xe7\xb0*\tauthority\x8a\xe7\xb0* bettery/x/events/MsgUpdateParams\"\x19\n\x17MsgUpdateParamsResponse\"\x90\x01\n\x0eMsgCreateEvent\x12)\n\x07\x63reator\x18\x01 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12\x10\n\x08question\x18\x02 \x01(\t\x12\x0f\n\x07\x61nswers\x18\x03 \x03(\t\x12\x10\n\x08\x65nd_time\x18\x04 \x01(\x04\x12\x10\n\x08\x63\x61tegory\x18\x05 \x01(\t:\x0c\x82\xe7\xb0*\x07\x63reator\"$\n\x16MsgCreateEventResponse\x12\n\n\x02id\x18\x01 \x01(\x04\"\x9b\x01\n\x12MsgCreatePartEvent\x12)\n\x07\x63reator\x18\x01 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12\x10\n\x08\x65vent_id\x18\x02 \x01(\x04\x12\x0f\n\x07\x61nswers\x18\x03 \x01(\t\x12)\n\x06\x61mount\x18\x04 \x01(\x0b\x32\x19.cosmos.base.v1beta1.Coin:\x0c\x82\xe7\xb0*\x07\x63reator\"\x1c\n\x1aMsgCreatePartEventResponse\"~\n\x10MsgValidateEvent\x12)\n\x07\x63reator\x18\x01 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12\x10\n\x08\x65vent_id\x18\x02 \x01(\x04\x12\x0f\n\x07\x61nswers\x18\x03 \x01(\t\x12\x0e\n\x06source\x18\x04 \x01(\t:\x0c\x82\xe7\xb0*\x07\x63reator\"\x1a\n\x18MsgValidateEventResponse2\x95\x03\n\x03Msg\x12^\n\x0cUpdateParams\x12\".bettery.events.v1.MsgUpdateParams\x1a*.bettery.events.v1.MsgUpdateParamsResponse\x12[\n\x0b\x43reateEvent\x12!.bettery.events.v1.MsgCreateEvent\x1a).bettery.events.v1.MsgCreateEventResponse\x12g\n\x0f\x43reatePartEvent\x12%.bettery.events.v1.MsgCreatePartEvent\x1a-.bettery.events.v1.MsgCreatePartEventResponse\x12\x61\n\rValidateEvent\x12#.bettery.events.v1.MsgValidateEvent\x1a+.bettery.events.v1.MsgValidateEventResponse\x1a\x05\x80\xe7\xb0*\x01\x42\x18Z\x16\x62\x65ttery/x/events/typesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\x1a\x62\x65ttery/events/v1/tx.proto\x12\x11\x62\x65ttery.events.v1\x1a\x11\x61mino/amino.proto\x1a\x1e\x62\x65ttery/events/v1/params.proto\x1a\x1e\x63osmos/base/v1beta1/coin.proto\x1a\x17\x63osmos/msg/v1/msg.proto\x1a\x19\x63osmos_proto/cosmos.proto\x1a\x14gogoproto/gogo.proto\"\xa9\x01\n\x0fMsgUpdateParams\x12+\n\tauthority\x18\x01 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12\x34\n\x06params\x18\x02 \x01(\x0b\x32\x19.bettery.events.v1.ParamsB\t\xc8\xde\x1f\x00\xa8\xe7\xb0*\x01:3\x82\xe7\xb0*\tauthority\x8a\xe7\xb0* bettery/x/events/MsgUpdateParams\"\x19\n\x17MsgUpdateParamsResponse\"\x90\x01\n\x0eMsgCreateEvent\x12)\n\x07\x63reator\x18\x01 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12\x10\n\x08question\x18\x02 \x01(\t\x12\x0f\n\x07\x61nswers\x18\x03 \x03(\t\x12\x10\n\x08\x65nd_time\x18\x04 \x01(\x04\x12\x10\n\x08\x63\x61tegory\x18\x05 \x01(\t:\x0c\x82\xe7\xb0*\x07\x63reator\"$\n\x16MsgCreateEventResponse\x12\n\n\x02id\x18\x01 \x01(\x04\"\x9b\x01\n\x12MsgCreatePartEvent\x12)\n\x07\x63reator\x18\x01 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12\x10\n\x08\x65vent_id\x18\x02 \x01(\x04\x12\x0f\n\x07\x61nswers\x18\x03 \x01(\t\x12)\n\x06\x61mount\x18\x04 \x01(\x0b\x32\x19.cosmos.base.v1beta1.Coin:\x0c\x82\xe7\xb0*\x07\x63reator\"\x1c\n\x1aMsgCreatePartEventResponse\"~\n\x10MsgValidateEvent\x12)\n\x07\x63reator\x18\x01 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12\x10\n\x08\x65vent_id\x18\x02 \x01(\x04\x12\x0f\n\x07\x61nswers\x18\x03 \x01(\t\x12\x0e\n\x06source\x18\x04 \x01(\t:\x0c\x82\xe7\xb0*\x07\x63reator\"\x1a\n\x18MsgValidateEventResponse2\x95\x03\n\x03Msg\x12^\n\x0cUpdateParams\x12\".bettery.events.v1.MsgUpdateParams\x1a*.bettery.events.v1.MsgUpdateParamsResponse\x12[\n\x0b\x43reateEvent\x12!.bettery.events.v1.MsgCreateEvent\x1a).bettery.events.v1.MsgCreateEventResponse\x12g\n\x0f\x43reatePartEvent\x12%.bettery.events.v1.MsgCreatePartEvent\x1a-.bettery.events.v1.MsgCreatePartEventResponse\x12\x61\n\rValidateEvent\x12#.bettery.events.v1.MsgValidateEvent\x1a+.bettery.events.v1.MsgValidateEventResponse\x1a\x05\x80\xe7\xb0*\x01\x42\x18Z\x16\x62\x65ttery/x/events/typesb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'bettery.events.v1.tx_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, 'bettery.events.v1.tx_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'Z\026bettery/x/events/types'
-  _globals['_MSGUPDATEPARAMS'].fields_by_name['authority']._loaded_options = None
-  _globals['_MSGUPDATEPARAMS'].fields_by_name['authority']._serialized_options = b'\322\264-\024cosmos.AddressString'
-  _globals['_MSGUPDATEPARAMS'].fields_by_name['params']._loaded_options = None
-  _globals['_MSGUPDATEPARAMS'].fields_by_name['params']._serialized_options = b'\310\336\037\000\250\347\260*\001'
-  _globals['_MSGUPDATEPARAMS']._loaded_options = None
-  _globals['_MSGUPDATEPARAMS']._serialized_options = b'\202\347\260*\tauthority\212\347\260* bettery/x/events/MsgUpdateParams'
-  _globals['_MSGCREATEEVENT'].fields_by_name['creator']._loaded_options = None
-  _globals['_MSGCREATEEVENT'].fields_by_name['creator']._serialized_options = b'\322\264-\024cosmos.AddressString'
-  _globals['_MSGCREATEEVENT']._loaded_options = None
-  _globals['_MSGCREATEEVENT']._serialized_options = b'\202\347\260*\007creator'
-  _globals['_MSGCREATEPARTEVENT'].fields_by_name['creator']._loaded_options = None
-  _globals['_MSGCREATEPARTEVENT'].fields_by_name['creator']._serialized_options = b'\322\264-\024cosmos.AddressString'
-  _globals['_MSGCREATEPARTEVENT']._loaded_options = None
-  _globals['_MSGCREATEPARTEVENT']._serialized_options = b'\202\347\260*\007creator'
-  _globals['_MSGVALIDATEEVENT'].fields_by_name['creator']._loaded_options = None
-  _globals['_MSGVALIDATEEVENT'].fields_by_name['creator']._serialized_options = b'\322\264-\024cosmos.AddressString'
-  _globals['_MSGVALIDATEEVENT']._loaded_options = None
-  _globals['_MSGVALIDATEEVENT']._serialized_options = b'\202\347\260*\007creator'
-  _globals['_MSG']._loaded_options = None
-  _globals['_MSG']._serialized_options = b'\200\347\260*\001'
-  _globals['_MSGUPDATEPARAMS']._serialized_start=207
-  _globals['_MSGUPDATEPARAMS']._serialized_end=376
-  _globals['_MSGUPDATEPARAMSRESPONSE']._serialized_start=378
-  _globals['_MSGUPDATEPARAMSRESPONSE']._serialized_end=403
-  _globals['_MSGCREATEEVENT']._serialized_start=406
-  _globals['_MSGCREATEEVENT']._serialized_end=550
-  _globals['_MSGCREATEEVENTRESPONSE']._serialized_start=552
-  _globals['_MSGCREATEEVENTRESPONSE']._serialized_end=588
-  _globals['_MSGCREATEPARTEVENT']._serialized_start=591
-  _globals['_MSGCREATEPARTEVENT']._serialized_end=746
-  _globals['_MSGCREATEPARTEVENTRESPONSE']._serialized_start=748
-  _globals['_MSGCREATEPARTEVENTRESPONSE']._serialized_end=776
-  _globals['_MSGVALIDATEEVENT']._serialized_start=778
-  _globals['_MSGVALIDATEEVENT']._serialized_end=904
-  _globals['_MSGVALIDATEEVENTRESPONSE']._serialized_start=906
-  _globals['_MSGVALIDATEEVENTRESPONSE']._serialized_end=932
-  _globals['_MSG']._serialized_start=935
-  _globals['_MSG']._serialized_end=1340
+    _globals['DESCRIPTOR']._loaded_options = None
+    _globals['DESCRIPTOR']._serialized_options = b'Z\026bettery/x/events/types'
+    _globals['_MSGUPDATEPARAMS'].fields_by_name['authority']._loaded_options = None
+    _globals['_MSGUPDATEPARAMS'].fields_by_name['authority']._serialized_options = b'\322\264-\024cosmos.AddressString'
+    _globals['_MSGUPDATEPARAMS'].fields_by_name['params']._loaded_options = None
+    _globals['_MSGUPDATEPARAMS'].fields_by_name['params']._serialized_options = b'\310\336\037\000\250\347\260*\001'
+    _globals['_MSGUPDATEPARAMS']._loaded_options = None
+    _globals['_MSGUPDATEPARAMS']._serialized_options = b'\202\347\260*\tauthority\212\347\260* bettery/x/events/MsgUpdateParams'
+    _globals['_MSGCREATEEVENT'].fields_by_name['creator']._loaded_options = None
+    _globals['_MSGCREATEEVENT'].fields_by_name['creator']._serialized_options = b'\322\264-\024cosmos.AddressString'
+    _globals['_MSGCREATEEVENT']._loaded_options = None
+    _globals['_MSGCREATEEVENT']._serialized_options = b'\202\347\260*\007creator'
+    _globals['_MSGCREATEPARTEVENT'].fields_by_name['creator']._loaded_options = None
+    _globals['_MSGCREATEPARTEVENT'].fields_by_name['creator']._serialized_options = b'\322\264-\024cosmos.AddressString'
+    _globals['_MSGCREATEPARTEVENT']._loaded_options = None
+    _globals['_MSGCREATEPARTEVENT']._serialized_options = b'\202\347\260*\007creator'
+    _globals['_MSGVALIDATEEVENT'].fields_by_name['creator']._loaded_options = None
+    _globals['_MSGVALIDATEEVENT'].fields_by_name['creator']._serialized_options = b'\322\264-\024cosmos.AddressString'
+    _globals['_MSGVALIDATEEVENT']._loaded_options = None
+    _globals['_MSGVALIDATEEVENT']._serialized_options = b'\202\347\260*\007creator'
+    _globals['_MSG']._loaded_options = None
+    _globals['_MSG']._serialized_options = b'\200\347\260*\001'
+    _globals['_MSGUPDATEPARAMS']._serialized_start = 207
+    _globals['_MSGUPDATEPARAMS']._serialized_end = 376
+    _globals['_MSGUPDATEPARAMSRESPONSE']._serialized_start = 378
+    _globals['_MSGUPDATEPARAMSRESPONSE']._serialized_end = 403
+    _globals['_MSGCREATEEVENT']._serialized_start = 406
+    _globals['_MSGCREATEEVENT']._serialized_end = 550
+    _globals['_MSGCREATEEVENTRESPONSE']._serialized_start = 552
+    _globals['_MSGCREATEEVENTRESPONSE']._serialized_end = 588
+    _globals['_MSGCREATEPARTEVENT']._serialized_start = 591
+    _globals['_MSGCREATEPARTEVENT']._serialized_end = 746
+    _globals['_MSGCREATEPARTEVENTRESPONSE']._serialized_start = 748
+    _globals['_MSGCREATEPARTEVENTRESPONSE']._serialized_end = 776
+    _globals['_MSGVALIDATEEVENT']._serialized_start = 778
+    _globals['_MSGVALIDATEEVENT']._serialized_end = 904
+    _globals['_MSGVALIDATEEVENTRESPONSE']._serialized_start = 906
+    _globals['_MSGVALIDATEEVENTRESPONSE']._serialized_end = 932
+    _globals['_MSG']._serialized_start = 935
+    _globals['_MSG']._serialized_end = 1340
 # @@protoc_insertion_point(module_scope)
