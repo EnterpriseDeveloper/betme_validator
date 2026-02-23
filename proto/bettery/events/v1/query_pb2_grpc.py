@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from bettery.events.v1 import query_pb2 as bettery_dot_events_dot_v1_dot_query__pb2
+from proto.bettery.events.v1 import query_pb2 as bettery_dot_events_dot_v1_dot_query__pb2
 
 GRPC_GENERATED_VERSION = '1.78.0'
 GRPC_VERSION = grpc.__version__
@@ -11,7 +11,8 @@ _version_not_supported = False
 
 try:
     from grpc._utilities import first_version_is_lower
-    _version_not_supported = first_version_is_lower(GRPC_VERSION, GRPC_GENERATED_VERSION)
+    _version_not_supported = first_version_is_lower(
+        GRPC_VERSION, GRPC_GENERATED_VERSION)
 except ImportError:
     _version_not_supported = True
 
@@ -36,50 +37,50 @@ class QueryStub(object):
             channel: A grpc.Channel.
         """
         self.Params = channel.unary_unary(
-                '/bettery.events.v1.Query/Params',
-                request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParamsRequest.SerializeToString,
-                response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParamsResponse.FromString,
-                _registered_method=True)
+            '/bettery.events.v1.Query/Params',
+            request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParamsRequest.SerializeToString,
+            response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParamsResponse.FromString,
+            _registered_method=True)
         self.GetEvents = channel.unary_unary(
-                '/bettery.events.v1.Query/GetEvents',
-                request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetEventsRequest.SerializeToString,
-                response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetEventsResponse.FromString,
-                _registered_method=True)
+            '/bettery.events.v1.Query/GetEvents',
+            request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetEventsRequest.SerializeToString,
+            response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetEventsResponse.FromString,
+            _registered_method=True)
         self.ListEvents = channel.unary_unary(
-                '/bettery.events.v1.Query/ListEvents',
-                request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsRequest.SerializeToString,
-                response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsResponse.FromString,
-                _registered_method=True)
+            '/bettery.events.v1.Query/ListEvents',
+            request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsRequest.SerializeToString,
+            response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsResponse.FromString,
+            _registered_method=True)
         self.GetParticipant = channel.unary_unary(
-                '/bettery.events.v1.Query/GetParticipant',
-                request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetParticipantRequest.SerializeToString,
-                response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetParticipantResponse.FromString,
-                _registered_method=True)
+            '/bettery.events.v1.Query/GetParticipant',
+            request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetParticipantRequest.SerializeToString,
+            response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetParticipantResponse.FromString,
+            _registered_method=True)
         self.ListParticipant = channel.unary_unary(
-                '/bettery.events.v1.Query/ListParticipant',
-                request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllParticipantRequest.SerializeToString,
-                response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllParticipantResponse.FromString,
-                _registered_method=True)
+            '/bettery.events.v1.Query/ListParticipant',
+            request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllParticipantRequest.SerializeToString,
+            response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllParticipantResponse.FromString,
+            _registered_method=True)
         self.GetValidator = channel.unary_unary(
-                '/bettery.events.v1.Query/GetValidator',
-                request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetValidatorRequest.SerializeToString,
-                response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetValidatorResponse.FromString,
-                _registered_method=True)
+            '/bettery.events.v1.Query/GetValidator',
+            request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetValidatorRequest.SerializeToString,
+            response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetValidatorResponse.FromString,
+            _registered_method=True)
         self.ListValidator = channel.unary_unary(
-                '/bettery.events.v1.Query/ListValidator',
-                request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllValidatorRequest.SerializeToString,
-                response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllValidatorResponse.FromString,
-                _registered_method=True)
+            '/bettery.events.v1.Query/ListValidator',
+            request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllValidatorRequest.SerializeToString,
+            response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllValidatorResponse.FromString,
+            _registered_method=True)
         self.ListEventsForValidator = channel.unary_unary(
-                '/bettery.events.v1.Query/ListEventsForValidator',
-                request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsForValidatorRequest.SerializeToString,
-                response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryEventsForValidatorResponse.FromString,
-                _registered_method=True)
+            '/bettery.events.v1.Query/ListEventsForValidator',
+            request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsForValidatorRequest.SerializeToString,
+            response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryEventsForValidatorResponse.FromString,
+            _registered_method=True)
         self.ParticipantById = channel.unary_unary(
-                '/bettery.events.v1.Query/ParticipantById',
-                request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParticipantByIdRequest.SerializeToString,
-                response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParticipantByIdResponse.FromString,
-                _registered_method=True)
+            '/bettery.events.v1.Query/ParticipantById',
+            request_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParticipantByIdRequest.SerializeToString,
+            response_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParticipantByIdResponse.FromString,
+            _registered_method=True)
 
 
 class QueryServicer(object):
@@ -152,74 +153,76 @@ class QueryServicer(object):
 
 def add_QueryServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Params': grpc.unary_unary_rpc_method_handler(
-                    servicer.Params,
-                    request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParamsRequest.FromString,
-                    response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParamsResponse.SerializeToString,
-            ),
-            'GetEvents': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetEvents,
-                    request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetEventsRequest.FromString,
-                    response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetEventsResponse.SerializeToString,
-            ),
-            'ListEvents': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListEvents,
-                    request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsRequest.FromString,
-                    response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsResponse.SerializeToString,
-            ),
-            'GetParticipant': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetParticipant,
-                    request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetParticipantRequest.FromString,
-                    response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetParticipantResponse.SerializeToString,
-            ),
-            'ListParticipant': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListParticipant,
-                    request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllParticipantRequest.FromString,
-                    response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllParticipantResponse.SerializeToString,
-            ),
-            'GetValidator': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetValidator,
-                    request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetValidatorRequest.FromString,
-                    response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetValidatorResponse.SerializeToString,
-            ),
-            'ListValidator': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListValidator,
-                    request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllValidatorRequest.FromString,
-                    response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllValidatorResponse.SerializeToString,
-            ),
-            'ListEventsForValidator': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListEventsForValidator,
-                    request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsForValidatorRequest.FromString,
-                    response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryEventsForValidatorResponse.SerializeToString,
-            ),
-            'ParticipantById': grpc.unary_unary_rpc_method_handler(
-                    servicer.ParticipantById,
-                    request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParticipantByIdRequest.FromString,
-                    response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParticipantByIdResponse.SerializeToString,
-            ),
+        'Params': grpc.unary_unary_rpc_method_handler(
+            servicer.Params,
+            request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParamsRequest.FromString,
+            response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParamsResponse.SerializeToString,
+        ),
+        'GetEvents': grpc.unary_unary_rpc_method_handler(
+            servicer.GetEvents,
+            request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetEventsRequest.FromString,
+            response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetEventsResponse.SerializeToString,
+        ),
+        'ListEvents': grpc.unary_unary_rpc_method_handler(
+            servicer.ListEvents,
+            request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsRequest.FromString,
+            response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsResponse.SerializeToString,
+        ),
+        'GetParticipant': grpc.unary_unary_rpc_method_handler(
+            servicer.GetParticipant,
+            request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetParticipantRequest.FromString,
+            response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetParticipantResponse.SerializeToString,
+        ),
+        'ListParticipant': grpc.unary_unary_rpc_method_handler(
+            servicer.ListParticipant,
+            request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllParticipantRequest.FromString,
+            response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllParticipantResponse.SerializeToString,
+        ),
+        'GetValidator': grpc.unary_unary_rpc_method_handler(
+            servicer.GetValidator,
+            request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetValidatorRequest.FromString,
+            response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryGetValidatorResponse.SerializeToString,
+        ),
+        'ListValidator': grpc.unary_unary_rpc_method_handler(
+            servicer.ListValidator,
+            request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllValidatorRequest.FromString,
+            response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllValidatorResponse.SerializeToString,
+        ),
+        'ListEventsForValidator': grpc.unary_unary_rpc_method_handler(
+            servicer.ListEventsForValidator,
+            request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryAllEventsForValidatorRequest.FromString,
+            response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryEventsForValidatorResponse.SerializeToString,
+        ),
+        'ParticipantById': grpc.unary_unary_rpc_method_handler(
+            servicer.ParticipantById,
+            request_deserializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParticipantByIdRequest.FromString,
+            response_serializer=bettery_dot_events_dot_v1_dot_query__pb2.QueryParticipantByIdResponse.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'bettery.events.v1.Query', rpc_method_handlers)
+        'bettery.events.v1.Query', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('bettery.events.v1.Query', rpc_method_handlers)
-
+    server.add_registered_method_handlers(
+        'bettery.events.v1.Query', rpc_method_handlers)
 
  # This class is part of an EXPERIMENTAL API.
+
+
 class Query(object):
     """Query defines the gRPC querier service.
     """
 
     @staticmethod
     def Params(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+               target,
+               options=(),
+               channel_credentials=None,
+               call_credentials=None,
+               insecure=False,
+               compression=None,
+               wait_for_ready=None,
+               timeout=None,
+               metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -238,15 +241,15 @@ class Query(object):
 
     @staticmethod
     def GetEvents(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                  target,
+                  options=(),
+                  channel_credentials=None,
+                  call_credentials=None,
+                  insecure=False,
+                  compression=None,
+                  wait_for_ready=None,
+                  timeout=None,
+                  metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -265,15 +268,15 @@ class Query(object):
 
     @staticmethod
     def ListEvents(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                   target,
+                   options=(),
+                   channel_credentials=None,
+                   call_credentials=None,
+                   insecure=False,
+                   compression=None,
+                   wait_for_ready=None,
+                   timeout=None,
+                   metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -292,15 +295,15 @@ class Query(object):
 
     @staticmethod
     def GetParticipant(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                       target,
+                       options=(),
+                       channel_credentials=None,
+                       call_credentials=None,
+                       insecure=False,
+                       compression=None,
+                       wait_for_ready=None,
+                       timeout=None,
+                       metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -319,15 +322,15 @@ class Query(object):
 
     @staticmethod
     def ListParticipant(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                        target,
+                        options=(),
+                        channel_credentials=None,
+                        call_credentials=None,
+                        insecure=False,
+                        compression=None,
+                        wait_for_ready=None,
+                        timeout=None,
+                        metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -346,15 +349,15 @@ class Query(object):
 
     @staticmethod
     def GetValidator(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                     target,
+                     options=(),
+                     channel_credentials=None,
+                     call_credentials=None,
+                     insecure=False,
+                     compression=None,
+                     wait_for_ready=None,
+                     timeout=None,
+                     metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -373,15 +376,15 @@ class Query(object):
 
     @staticmethod
     def ListValidator(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                      target,
+                      options=(),
+                      channel_credentials=None,
+                      call_credentials=None,
+                      insecure=False,
+                      compression=None,
+                      wait_for_ready=None,
+                      timeout=None,
+                      metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -400,15 +403,15 @@ class Query(object):
 
     @staticmethod
     def ListEventsForValidator(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                               target,
+                               options=(),
+                               channel_credentials=None,
+                               call_credentials=None,
+                               insecure=False,
+                               compression=None,
+                               wait_for_ready=None,
+                               timeout=None,
+                               metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
@@ -427,15 +430,15 @@ class Query(object):
 
     @staticmethod
     def ParticipantById(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+                        target,
+                        options=(),
+                        channel_credentials=None,
+                        call_credentials=None,
+                        insecure=False,
+                        compression=None,
+                        wait_for_ready=None,
+                        timeout=None,
+                        metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,

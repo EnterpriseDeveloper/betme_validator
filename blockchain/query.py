@@ -1,6 +1,6 @@
 import os
 import grpc
-from bettery.events.v1 import query_pb2, query_pb2_grpc
+from proto.bettery.events.v1 import query_pb2, query_pb2_grpc
 
 from dotenv import load_dotenv
 load_dotenv()

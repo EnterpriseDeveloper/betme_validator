@@ -4,6 +4,7 @@
 # source: cosmos/base/query/v1beta1/pagination.proto
 # Protobuf Python Version: 6.31.1
 """Generated protocol buffer code."""
+from proto.cosmos_proto import cosmos_pb2 as cosmos__proto_dot_cosmos__pb2
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
@@ -22,21 +23,19 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
-from cosmos_proto import cosmos_pb2 as cosmos__proto_dot_cosmos__pb2
-
-
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n*cosmos/base/query/v1beta1/pagination.proto\x12\x19\x63osmos.base.query.v1beta1\x1a\x19\x63osmos_proto/cosmos.proto\"t\n\x0bPageRequest\x12\x0b\n\x03key\x18\x01 \x01(\x0c\x12\x0e\n\x06offset\x18\x02 \x01(\x04\x12\r\n\x05limit\x18\x03 \x01(\x04\x12\x13\n\x0b\x63ount_total\x18\x04 \x01(\x08\x12$\n\x07reverse\x18\x05 \x01(\x08\x42\x13\xda\xb4-\x0f\x63osmos-sdk 0.43\"/\n\x0cPageResponse\x12\x10\n\x08next_key\x18\x01 \x01(\x0c\x12\r\n\x05total\x18\x02 \x01(\x04\x42*Z(github.com/cosmos/cosmos-sdk/types/queryb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'cosmos.base.query.v1beta1.pagination_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, 'cosmos.base.query.v1beta1.pagination_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'Z(github.com/cosmos/cosmos-sdk/types/query'
-  _globals['_PAGEREQUEST'].fields_by_name['reverse']._loaded_options = None
-  _globals['_PAGEREQUEST'].fields_by_name['reverse']._serialized_options = b'\332\264-\017cosmos-sdk 0.43'
-  _globals['_PAGEREQUEST']._serialized_start=100
-  _globals['_PAGEREQUEST']._serialized_end=216
-  _globals['_PAGERESPONSE']._serialized_start=218
-  _globals['_PAGERESPONSE']._serialized_end=265
+    _globals['DESCRIPTOR']._loaded_options = None
+    _globals['DESCRIPTOR']._serialized_options = b'Z(github.com/cosmos/cosmos-sdk/types/query'
+    _globals['_PAGEREQUEST'].fields_by_name['reverse']._loaded_options = None
+    _globals['_PAGEREQUEST'].fields_by_name['reverse']._serialized_options = b'\332\264-\017cosmos-sdk 0.43'
+    _globals['_PAGEREQUEST']._serialized_start = 100
+    _globals['_PAGEREQUEST']._serialized_end = 216
+    _globals['_PAGERESPONSE']._serialized_start = 218
+    _globals['_PAGERESPONSE']._serialized_end = 265
 # @@protoc_insertion_point(module_scope)
