@@ -1,3 +1,5 @@
+import asyncio
+
 from fastapi import FastAPI
 from blockchain.query import fetch_events
 from blockchain.transact import validate_event
@@ -11,7 +13,7 @@ def read_root():
     if len(events.events) != 0:
         for event in events.events:
             print(event)
-            validate_event(event.id, "yes", "my_course")
+            asyncio.run(validate_event(event.id, "yes", "my_course"))
     else:
         print("no events")
 

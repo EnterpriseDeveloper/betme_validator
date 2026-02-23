@@ -1,6 +1,8 @@
+import asyncio
 import os
 import hashlib
 import base64
+import aiohttp
 import requests
 import bech32
 
@@ -34,8 +36,6 @@ apiUrl = os.environ.get("COSMOS_API_URL")
 ADDRESS_PREFIX = "bettery"
 
 
-# ================= SIGN =================
-
 def sign_tx(privkey_bytes: bytes, sign_doc_bytes: bytes) -> bytes:
     sk = SigningKey.from_string(privkey_bytes, curve=SECP256k1)
 
@@ -48,14 +48,11 @@ def sign_tx(privkey_bytes: bytes, sign_doc_bytes: bytes) -> bytes:
 
     r, s = sigdecode_string(signature, SECP256k1.order)
 
-    # --- LOW S FIX ---
     if s > SECP256k1.order // 2:
         s = SECP256k1.order - s
 
     return sigencode_string(r, s, SECP256k1.order)
 
-
-# ================= PUBKEY =================
 
 def get_public_key(privkey_bytes: bytes) -> bytes:
     sk = SigningKey.from_string(privkey_bytes, curve=SECP256k1)
@@ -68,8 +65,6 @@ def get_public_key(privkey_bytes: bytes) -> bytes:
     return prefix + x.to_bytes(32, byteorder="big")
 
 
-# ================= ADDRESS =================
-
 def get_creator_address(public_key_bytes: bytes) -> str:
     sha = hashlib.sha256(public_key_bytes).digest()
     ripemd = hashlib.new("ripemd160", sha).digest()
@@ -79,8 +74,6 @@ def get_creator_address(public_key_bytes: bytes) -> str:
         bech32.convertbits(ripemd, 8, 5)
     )
 
-
-# ================= ACCOUNT QUERY =================
 
 def get_sequence(address: str):
     res = requests.get(
@@ -97,17 +90,13 @@ def get_sequence(address: str):
     return account_number, sequence
 
 
-# ================= MAIN =================
-
-def validate_event(eventId: int, answers: str, source: str):
+async def validate_event(eventId: int, answers: str, source: str):
     privkey_bytes = seed_to_privkey(memo)
 
     public_key_bytes = get_public_key(privkey_bytes)
     creator_address = get_creator_address(public_key_bytes)
 
     account_number, sequence = get_sequence(creator_address)
-
-    # -------- Msg --------
 
     msg = MsgValidateEvent(
         creator=creator_address,
@@ -124,8 +113,6 @@ def validate_event(eventId: int, answers: str, source: str):
     tx_body = TxBody(messages=[any_msg])
     body_bytes = tx_body.SerializeToString()
 
-    # -------- PubKey --------
-
     pubkey = PubKey(key=public_key_bytes)
 
     any_pubkey = Any(
@@ -141,8 +128,6 @@ def validate_event(eventId: int, answers: str, source: str):
         sequence=sequence
     )
 
-    # -------- Fee (FIXED) --------
-
     fee_coin = Coin(denom="ubet", amount="5000")
 
     fee = Fee(
@@ -157,8 +142,6 @@ def validate_event(eventId: int, answers: str, source: str):
 
     auth_bytes = auth_info.SerializeToString()
 
-    # -------- SignDoc --------
-
     sign_doc = SignDoc(
         body_bytes=body_bytes,
         auth_info_bytes=auth_bytes,
@@ -167,11 +150,8 @@ def validate_event(eventId: int, answers: str, source: str):
     )
 
     sign_doc_bytes = sign_doc.SerializeToString()
-    # -------- Sign --------
 
     signature = sign_tx(privkey_bytes, sign_doc_bytes)
-
-    # -------- TxRaw --------
 
     tx_raw = TxRaw(
         body_bytes=body_bytes,
@@ -179,14 +159,41 @@ def validate_event(eventId: int, answers: str, source: str):
         signatures=[signature]
     )
 
+    txhash = await broadcast_tx(tx_raw, apiUrl)
+    result = await wait_for_tx(txhash, apiUrl)
+    print("Final result:", result)
+
+
+async def broadcast_tx(tx_raw, apiUrl):
     tx_bytes = base64.b64encode(tx_raw.SerializeToString()).decode()
 
-    res = requests.post(
-        f"{apiUrl}/cosmos/tx/v1beta1/txs",
-        json={
-            "tx_bytes": tx_bytes,
-            "mode": "BROADCAST_MODE_SYNC"
-        }
-    )
+    async with aiohttp.ClientSession() as session:
+        async with session.post(
+            f"{apiUrl}/cosmos/tx/v1beta1/txs",
+            json={
+                "tx_bytes": tx_bytes,
+                "mode": "BROADCAST_MODE_SYNC"
+            }
+        ) as resp:
+            data = await resp.json()
+            print("Broadcast response:", data)
 
-    print("NODE RESPONSE:", res.json())
+            txhash = data["tx_response"]["txhash"]
+            return txhash
+
+
+async def wait_for_tx(txhash, apiUrl, timeout=30):
+    async with aiohttp.ClientSession() as session:
+        for _ in range(timeout):
+            await asyncio.sleep(1)
+
+            async with session.get(
+                f"{apiUrl}/cosmos/tx/v1beta1/txs/{txhash}"
+            ) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    if int(data["tx_response"]["height"]) > 0:
+                        print("Tx confirmed:", data)
+                        return data
+
+        raise Exception("Transaction not confirmed in time")
