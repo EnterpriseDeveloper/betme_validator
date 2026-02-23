@@ -11,6 +11,8 @@ def read_root():
     if len(events.events) != 0:
         for event in events.events:
             print(event)
-            validate_event(event.id, "rqwerwer", "my_course")
+            validate_event(event.id, "yes", "my_course")
+    else:
+        print("no events")
 
     return {"status": "ok"}
