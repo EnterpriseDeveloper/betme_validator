@@ -22,15 +22,15 @@ chainId = os.environ.get("COSMOS_CHAIN_ID")
 apiUrl = os.environ.get("COSMOS_API_URL")
 
 
-def sign_tx(privkey_hex: str, sign_doc_bytes: bytes) -> bytes:
-    sk = SigningKey.from_string(bytes.fromhex(privkey_hex), curve=SECP256k1)
+def sign_tx(privkey: bytes, sign_doc_bytes: bytes) -> bytes:
+    sk = SigningKey.from_string(privkey, curve=SECP256k1)
     return sk.sign_deterministic(sign_doc_bytes, hashfunc=hashlib.sha256)
 
 
-def get_public_key(privkey_hex: str) -> bytes:
-    sk = SigningKey.from_string(bytes.fromhex(privkey_hex), curve=SECP256k1)
+def get_public_key(privkey: bytes) -> bytes:
+    sk = SigningKey.from_string(privkey, curve=SECP256k1)
     vk = sk.get_verifying_key()
-    return b"\x02" + vk.to_string()[:32]
+    return vk.to_string("compressed")
 
 
 def get_creator_address(public_key_bytes: bytes) -> str:
@@ -39,7 +39,7 @@ def get_creator_address(public_key_bytes: bytes) -> str:
     ripemd = hashlib.new("ripemd160", sha).digest()
 
     return bech32.bech32_encode(
-        "bettery",
+        chainId,
         bech32.convertbits(ripemd, 8, 5)
     )
 
@@ -49,8 +49,8 @@ def get_sequence(creator_address: str):
         f"{apiUrl}/cosmos/auth/v1beta1/accounts/{creator_address}"
     )
     data = res.json()
-    account_number = int(data["account"]["base_account"]["account_number"])
-    sequence = int(data["account"]["base_account"]["sequence"])
+    account_number = int(data["account"]["account_number"])
+    sequence = int(data["account"]["sequence"])
     return account_number, sequence
 
 
@@ -85,7 +85,7 @@ def validate_event(eventId: int, answers: str, source: str):
     signer_info = SignerInfo(
         public_key=any_pubkey,
         mode_info=ModeInfo(
-            single=ModeInfo.Single(mode=1)  # SIGN_MODE_DIRECT
+            single=ModeInfo.Single(mode=1)
         ),
         sequence=sequence
     )
