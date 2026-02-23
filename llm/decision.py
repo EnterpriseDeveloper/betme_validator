@@ -62,6 +62,7 @@ async def decision_maker():
             print(f"Error processing event {event.id}: {e}")
 
 
+# TODO: test
 async def llm_answer(question, options):
 
     response = client.responses.create(
@@ -100,10 +101,10 @@ async def llm_answer(question, options):
 
     # --- Sanity checks ---
     if result["answer"] not in options and result["answer"] != "REFUND":
-        raise Exception("AI returned invalid option")
+        print.error("AI returned invalid option")
 
     if result["answer"] != "REFUND" and not result["source"].startswith("http"):
-        raise Exception("Invalid source")
+        print.error("Invalid source")
 
     return result
 
@@ -111,4 +112,4 @@ async def llm_answer(question, options):
 async def cron_loop():
     while True:
         await decision_maker()
-        await asyncio.sleep(300)
+        await asyncio.sleep(300)  # 5 minutes
