@@ -196,4 +196,4 @@ async def wait_for_tx(txhash, apiUrl, timeout=30):
                         print("Tx confirmed:", data)
                         return data
 
-        raise Exception("Transaction not confirmed in time")
+        raise print.error("Transaction not confirmed in time")
