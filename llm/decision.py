@@ -3,7 +3,7 @@ import os
 from openai import OpenAI
 from tavily import TavilyClient
 
-from blockchain.query import fetch_events
+from db.postgres import fetch_events
 from blockchain.transact import validate_event
 from dotenv import load_dotenv
 load_dotenv()
@@ -39,11 +39,11 @@ Return strictly valid JSON:
 async def decision_maker():
     events = fetch_events()
 
-    if not events.events:
+    if not events:
         print("No events")
         return
 
-    for event in events.events:
+    for event in events:
         try:
             print(f"Processing event {event.id}")
 

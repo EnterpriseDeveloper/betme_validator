@@ -18,4 +18,5 @@ dependencies = [
     "grpcio-tools>=1.71.2",
     "uvicorn>=0.41.0",
     "protobuf>=6.33.5",
+    "asyncpg>=0.31.0",
 ]
